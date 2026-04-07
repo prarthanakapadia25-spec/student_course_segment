@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS edupro;
+USE edupro;
+
+CREATE TABLE IF NOT EXISTS users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Age INT NOT NULL,
+    Gender VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+    CourseID INT PRIMARY KEY AUTO_INCREMENT,
+    CourseCategory VARCHAR(50) NOT NULL,
+    CourseType VARCHAR(30) NOT NULL,
+    CourseLevel VARCHAR(20) NOT NULL,
+    CourseRating DECIMAL(3,1) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS transactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    CourseID INT NOT NULL,
+    TransactionDate DATE NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES users(UserID),
+    FOREIGN KEY (CourseID) REFERENCES courses(CourseID)
+);
